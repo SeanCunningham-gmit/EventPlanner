@@ -1,11 +1,12 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavigationBar from './components/NavigationBar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // // Import necessary components
+import NavigationBar from './components/NavigationBar'; // Import custom components
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Content from './components/Content';
 
 function App() {
   return (
+    // enableing navigation between different routes
     <Router>
       <NavigationBar />
       <Routes>
@@ -18,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; // Export the App component as the default export
