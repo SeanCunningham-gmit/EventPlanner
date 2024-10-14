@@ -1,40 +1,31 @@
 import React from 'react';
+import { useEffect, useState } from 'react'; // Import useState and useEffect from React
 import Movies from './Movies'; // Import Movies component
+import axios from 'axios'; // Import axios for API requests
 
-const Read = () => {
-  // Define a list of movies as a array of objects
-  const movies = [
-    {
-      "Title": "Avengers: Infinity War", 
-      "Year": "2018",                    
-      "imdbID": "tt4154756",             
-      "Type": "movie",                   
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg" // URL to the movie poster
-    },
-    {
-      "Title": "Captain America: Civil War",
-      "Year": "2016",
-      "imdbID": "tt3498820",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-    },
-    {
-      "Title": "World War Z",
-      "Year": "2013",
-      "imdbID": "tt0816711",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-    }
-  ];
+function Read() {
+  // State to store the list of movies
+  const [movies, setMovies] = useState([]);
 
-  // Return a div for the Movies component
-  // Pass "movies" array to the Movies component via the prop
+  // Fetch movies data when the component loads
+  useEffect(() => {
+    axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+      .then((response) => {
+        // Set the movies state with the fetched data
+        setMovies(response.data.movies);
+      })
+      .catch((error) => {
+        console.log(error); // Log any errors
+      });
+  }, []); // Empty array means this runs only once, when the component mounts
+
   return (
     <div>
-      <Movies myMovies={movies} /> {/* Render Movies component with movie data */}
+      <h2>This is my Read Component.</h2>
+      {/* Pass the movies to the Movies component */}
+      <Movies myMovies={movies} />
     </div>
   );
-};
+}
 
 export default Read;
-

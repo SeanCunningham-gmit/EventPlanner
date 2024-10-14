@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Content from './components/Content';
 import Read from './components/Read';
+import Create from './components/create';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Content />} />
         <Route path="/Read" element={<Read />}  />
-        <Route path="/create" element={<h1>Create Component</h1>} />
+        <Route path="/create" element={< Create />} />
       </Routes>
       <Footer />
     </Router>
