@@ -1,18 +1,31 @@
 // create.js
 
 import { useState } from "react";
+import axios from "axios"; // Import axios for making HTTP requests
 
 function Create() {
   // State to store the movie title, year, and poster URL inputs
   const [title, setTitle] = useState('');
-  const [year, setYear] = useState(''); // New state for movie year
-  const [posterUrl, setPosterUrl] = useState(''); // New state for poster URL
+  const [year, setYear] = useState(''); // State for movie year
+  const [posterUrl, setPosterUrl] = useState(''); // State for poster URL
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form action
-    console.log({ title, year, posterUrl }); // Log the entered title, year, and poster URL
-  }
+    
+    console.log(`Title: ${title}, Year: ${year}, Poster: ${posterUrl}`); // Log the entered title, year, and poster URL
+    
+    const movie = {
+      title: title,
+      year: year,
+      poster: posterUrl
+    };
+    
+    // Send a POST request to add the movie
+    axios.post('http://localhost:4000/api/movies', movie)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.response.data));
+  };
 
   return (
     <div>
@@ -24,27 +37,27 @@ function Create() {
           <input type="text"
             className="form-control"
             value={title} // Bind the input to title state
-            onChange={(e) => { setTitle(e.target.value) }} // Update title state when typing
+            onChange={(e) => setTitle(e.target.value)} // Update title state when typing
           />
         </div>
 
-        {/* New input field for the movie year */}
+        {/* Input field for the movie year */}
         <div className="form-group">
           <label>Add Movie Year: </label>
           <input type="text"
             className="form-control"
             value={year} // Bind the input to year state
-            onChange={(e) => { setYear(e.target.value) }} // Update year state when typing
+            onChange={(e) => setYear(e.target.value)} // Update year state when typing
           />
         </div>
 
-        {/* New input field for the movie poster URL */}
+        {/* Input field for the movie poster URL */}
         <div className="form-group">
           <label>Add Poster URL: </label>
           <input type="text"
             className="form-control"
             value={posterUrl} // Bind the input to posterUrl state
-            onChange={(e) => { setPosterUrl(e.target.value) }} // Update posterUrl state when typing
+            onChange={(e) => setPosterUrl(e.target.value)} // Update posterUrl state when typing
           />
         </div>
 

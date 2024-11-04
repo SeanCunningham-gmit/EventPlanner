@@ -9,10 +9,10 @@ function Read() {
 
   // Fetch movies data when the component loads
   useEffect(() => {
-    axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+    axios.get('http://localhost:4000/api/movies')  
       .then((response) => {
         // Set the movies state with the fetched data
-        setMovies(response.data.movies);
+        setMovies(response.data.myMovies);
       })
       .catch((error) => {
         console.log(error); // Log any errors
