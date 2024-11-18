@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card'; // Import Bootstrap Card component
-import Button from 'react-bootstrap/Button'; 
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function MovieItem(props) {
   // useEffect to log when the prop changes
@@ -26,6 +27,10 @@ function MovieItem(props) {
               View on IMDb
             </Button>
           </Card.Text>
+          {/* Link to edit page */}
+          <Link to={"/edit/" + props.myMovie._id} className="btn btn-primary">
+            Edit
+          </Link>
         </Card.Body>
         
         {/* Card Footer to display the year */}
@@ -36,4 +41,5 @@ function MovieItem(props) {
 }
 
 export default MovieItem;
+
 

@@ -1,7 +1,6 @@
 const express = require('express'); // Import the Express framework 
 const bodyParser = require('body-parser'); // Import body-parser for handling form data
 const cors = require('cors'); // Import CORS to allow cross-origin requests
-const path = require('path'); // Import path module for file path operations
 const mongoose = require('mongoose'); // Import Mongoose for MongoDB connection
 const Movie = require('./models/movie'); // Import the Movie model
 
@@ -59,6 +58,32 @@ app.get('/api/movie/:id', async (req, res) => {
     res.status(200).json(movie);
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving movie', error });
+  }
+});
+
+// 4. Edit Movie (GET specific movie by ID for editing)
+app.get('/api/movie/:id', async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+    res.status(200).send(movie);
+  } catch (error) {
+    res.status(500).json({ message: 'Error retrieving movie for editing', error });
+  }
+});
+
+// 5. Update Movie (PUT)
+app.put('/api/movie/:id', async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+    res.status(200).send(movie);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating movie', error });
   }
 });
 
