@@ -1,29 +1,33 @@
-import React from 'react';
-import { useEffect, useState } from 'react'; // Import useState and useEffect from React
-import Movies from './Movies'; // Import Movies component
-import axios from 'axios'; // Import axios for API requests
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Movies from "./Movies"; // Import Movies component
 
 function Read() {
-  // State to store the list of movies
-  const [movies, setMovies] = useState([]);
+  const [data, setData] = useState([]); // State to store the list of movies
 
-  // Fetch movies data when the component loads
-  useEffect(() => {
+  // Function to reload movie data
+  const Reload = () => {
+    console.log("Reloading movie data...");
     axios.get('http://localhost:4000/api/movies')  
       .then((response) => {
         // Set the movies state with the fetched data
-        setMovies(response.data.myMovies);
+        setData(response.data);
       })
       .catch((error) => {
-        console.log(error); // Log any errors
+        console.error("Error reloading data:", error); // Log any errors
       });
-  }, []); // Empty array means this runs only once, when the component mounts
+  };
+
+  // Initial fetch when the component loads
+  useEffect(() => {
+    Reload(); // Call the Reload function on component mount
+  }, []);
 
   return (
     <div>
-      <h2>This is my Read Component.</h2>
-      {/* Pass the movies to the Movies component */}
-      <Movies myMovies={movies} />
+      <h2>Movie List</h2>
+      {/* Pass the movies and Reload function to the Movies component */}
+      <Movies myMovies={data} ReloadData={Reload} />
     </div>
   );
 }

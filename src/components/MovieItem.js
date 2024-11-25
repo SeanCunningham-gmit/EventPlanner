@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card'; // Import Bootstrap Card component
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import axios from "axios"; // Import axios for HTTP requests
 
 function MovieItem(props) {
   // useEffect to log when the prop changes
@@ -9,7 +10,19 @@ function MovieItem(props) {
     console.log("Movie Item:", props.myMovie);
   }, [props.myMovie]);
 
-  // movie data from props
+  // Handle delete functionality
+  const handleDelete = (e) => {
+    e.preventDefault();
+    axios.delete('http://localhost:4000/api/movie/' + props.myMovie._id)
+      .then(() => {
+        props.Reload(); // Refresh the movie list after deletion
+      })
+      .catch((error) => {
+        console.error("Error deleting movie:", error);
+      });
+  };
+
+  // Movie data from props
   const { Title, Year, Poster } = props.myMovie;
 
   return (
@@ -31,6 +44,8 @@ function MovieItem(props) {
           <Link to={"/edit/" + props.myMovie._id} className="btn btn-primary">
             Edit
           </Link>
+          {/* Delete Button */}
+          <Button variant="danger" onClick={handleDelete} className="ms-2">Delete</Button>
         </Card.Body>
         
         {/* Card Footer to display the year */}
@@ -41,5 +56,6 @@ function MovieItem(props) {
 }
 
 export default MovieItem;
+
 
 

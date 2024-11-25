@@ -87,6 +87,20 @@ app.put('/api/movie/:id', async (req, res) => {
   }
 });
 
+// 6. Delete Movie (DELETE)
+app.delete('/api/movie/:id', async (req, res) => {
+  try {
+    console.log('Deleting movie with ID:', req.params.id);
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+    res.status(200).send({ message: "Movie deleted successfully", movie });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting movie', error });
+  }
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack); // Log the error stack trace
