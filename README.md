@@ -1,73 +1,151 @@
-# Getting Started with Create React App
+User Guide for EventPlanner App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to EventPlanner, your one-stop app for creating, managing, and discovering events. This guide will walk you through the key features and functionality of the app.
 
-## Available Scripts
+Table of Contents
 
-In the project directory, you can run:
+Getting Started
 
-### `npm start`
+Features Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Using the App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Home Page
 
-### `npm test`
+Create Event
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+View Events
 
-### `npm run build`
+Edit an Event
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Delete an Event
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ongoing Events
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+FAQ
 
-### `npm run eject`
+Support
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Getting Started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Requirements
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+A modern web browser (Google Chrome, Firefox, Safari, Edge).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Internet connection.
 
-## Learn More
+Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Download or clone the EventPlanner repository from GitHub.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Install dependencies using npm:
 
-### Code Splitting
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Start the development server:
 
-### Analyzing the Bundle Size
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Access the app in your browser at http://localhost:3000.
 
-### Making a Progressive Web App
+Features Overview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Create Events: Add new events with details like name, date, time, location, and description.
 
-### Advanced Configuration
+View Events: See a list of all events, complete with descriptions and relevant details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Edit Events: Update existing event information.
 
-### Deployment
+Delete Events: Remove unwanted events from your list.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Discover Ongoing Events: Find live and upcoming events in Ireland.
 
-### `npm run build` fails to minify
+Using the App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# Lab2-DataRep" 
-"# Lab4" 
-"# Lab9" 
+Home Page
+
+Access: The home page is the default landing page of the app.
+
+Purpose: Provides a brief overview of the app and displays the current time.
+
+Create Event
+
+Navigate to the "Create Event" page using the navigation bar.
+
+Fill in the form fields:
+
+Event Name: Enter the name of the event.
+
+Date: Specify the date of the event.
+
+Time: Provide the event start time.
+
+Location: Enter the venue or address.
+
+Description: Add a brief description of the event.
+
+Click the Add Event button to save the event.
+
+View Events
+
+Navigate to the "View Events" page.
+
+Browse through the list of events displayed as individual cards.
+
+Each card shows:
+
+Event Name
+
+Date and Time
+
+Location
+
+Description
+
+Edit an Event
+
+Click the Edit button on an event card.
+
+Update the form fields with the new details.
+
+Click the Save Changes button to update the event.
+
+Delete an Event
+
+Click the Delete button on an event card.
+
+Confirm the deletion if prompted.
+
+The event will be removed from the list.
+
+Ongoing Events
+
+Navigate to the "Ongoing Events" section.
+
+Browse live and upcoming events sourced from an external API.
+
+Click the provided links for more details about each event.
+
+FAQ
+
+Q: Can I use the app on my phone?
+
+A: Yes, the app is responsive and works well on mobile devices.
+
+Q: What happens if I delete an event by mistake?
+
+A: Currently, there is no undo option. Please confirm carefully before deleting an event.
+
+Q: Why can’t I see the ongoing events?
+
+A: Ensure you are connected to the internet. If the problem persists, the external API may be down.
+
+Support
+
+If you encounter any issues or have questions, feel free to reach out:
+
+Email: support@eventplanner.com
+
+GitHub: EventPlanner Repository
+
+We hope you enjoy using EventPlanner!
