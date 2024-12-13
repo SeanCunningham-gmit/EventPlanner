@@ -1,8 +1,8 @@
-const express = require('express'); // Import the Express framework 
+const express = require('express'); // Import the Express framework  
 const bodyParser = require('body-parser'); // Import body-parser for handling form data
 const cors = require('cors'); // Import CORS to allow cross-origin requests
 const mongoose = require('mongoose'); // Import Mongoose for MongoDB connection
-const Movie = require('./models/movie'); // Import the Movie model
+const Event = require('./models/event'); // Import the Event model
 
 // Connect to MongoDB with admin credentials and DataRep as the database
 mongoose.connect('mongodb+srv://admin:admin@datarep.uvyc6.mongodb.net/DataRep?retryWrites=true&w=majority', {
@@ -26,78 +26,78 @@ app.get('/', (req, res) => {
     res.send('Hello World'); // Respond with "Hello World"
 });
 
-// 1. Create a New Movie
-app.post('/api/movies', async (req, res) => {
+// 1. Create a New Event
+app.post('/api/events', async (req, res) => {
   try {
-    const { title, year, imdbID, type, poster } = req.body;
-    const newMovie = new Movie({ title, year, imdbID, type, poster });
-    await newMovie.save();
-    res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
+    const { name, date, eventID, type, location } = req.body;
+    const newEvent = new Event({ name, date, eventID, type, location });
+    await newEvent.save();
+    res.status(201).json({ message: 'Event created successfully', event: newEvent });
   } catch (error) {
-    res.status(400).json({ message: 'Error saving movie', error });
+    res.status(400).json({ message: 'Error saving event', error });
   }
 });
 
-// 2. Retrieve All Movies
-app.get('/api/movies', async (req, res) => {
+// 2. Retrieve All Events
+app.get('/api/events', async (req, res) => {
   try {
-    const movies = await Movie.find({});
-    res.status(200).json(movies);
+    const events = await Event.find({});
+    res.status(200).json(events);
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving movies', error });
+    res.status(500).json({ message: 'Error retrieving events', error });
   }
 });
 
-// 3. Retrieve a Movie by ID
-app.get('/api/movie/:id', async (req, res) => {
+// 3. Retrieve an Event by ID
+app.get('/api/event/:id', async (req, res) => {
   try {
-    const movie = await Movie.findById(req.params.id);
-    if (!movie) {
-      return res.status(404).json({ message: 'Movie not found' });
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-    res.status(200).json(movie);
+    res.status(200).json(event);
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving movie', error });
+    res.status(500).json({ message: 'Error retrieving event', error });
   }
 });
 
-// 4. Edit Movie (GET specific movie by ID for editing)
-app.get('/api/movie/:id', async (req, res) => {
+// 4. Edit Event (GET specific event by ID for editing)
+app.get('/api/event/:id', async (req, res) => {
   try {
-    const movie = await Movie.findById(req.params.id);
-    if (!movie) {
-      return res.status(404).json({ message: 'Movie not found' });
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-    res.status(200).send(movie);
+    res.status(200).send(event);
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving movie for editing', error });
+    res.status(500).json({ message: 'Error retrieving event for editing', error });
   }
 });
 
-// 5. Update Movie (PUT)
-app.put('/api/movie/:id', async (req, res) => {
+// 5. Update Event (PUT)
+app.put('/api/event/:id', async (req, res) => {
   try {
-    const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!movie) {
-      return res.status(404).json({ message: 'Movie not found' });
+    const event = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-    res.status(200).send(movie);
+    res.status(200).send(event);
   } catch (error) {
-    res.status(500).json({ message: 'Error updating movie', error });
+    res.status(500).json({ message: 'Error updating event', error });
   }
 });
 
-// 6. Delete Movie (DELETE)
-app.delete('/api/movie/:id', async (req, res) => {
+// 6. Delete Event (DELETE)
+app.delete('/api/event/:id', async (req, res) => {
   try {
-    console.log('Deleting movie with ID:', req.params.id);
-    const movie = await Movie.findByIdAndDelete(req.params.id);
-    if (!movie) {
-      return res.status(404).json({ message: 'Movie not found' });
+    console.log('Deleting event with ID:', req.params.id);
+    const event = await Event.findByIdAndDelete(req.params.id);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-    res.status(200).send({ message: "Movie deleted successfully", movie });
+    res.status(200).send({ message: "Event deleted successfully", event });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting movie', error });
+    res.status(500).json({ message: 'Error deleting event', error });
   }
 });
 

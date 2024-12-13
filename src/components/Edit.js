@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from 'react'; 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -7,17 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 export default function Edit(props) {
   let { id } = useParams();
-  const [title, setTitle] = useState("");
-  const [year, setYear] = useState("");
-  const [poster, setPoster] = useState("");
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [location, setLocation] = useState("");
   const navigate = useNavigate();
 
 useEffect(() => {
-    axios.get('http://localhost:4000/api/movie/' + id)
+    axios.get('http://localhost:4000/api/event/' + id)
         .then((response) => {
-            setTitle(response.data.title);
-            setYear(response.data.year);
-            setPoster(response.data.poster);
+            setName(response.data.name);
+            setDate(response.data.date);
+            setLocation(response.data.location);
         })
         .catch((error) => {
             console.log(error);
@@ -26,8 +25,8 @@ useEffect(() => {
 
 const handleSubmit = (event) => {
     event.preventDefault();
-    const newMovie = { id, title, year, poster };
-    axios.put('http://localhost:4000/api/movie/' + id, newMovie)
+    const newEvent = { id, name, date, location };
+    axios.put('http://localhost:4000/api/event/' + id, newEvent)
         .then((res) => {
             console.log(res.data);
             navigate('/read');
@@ -38,28 +37,28 @@ return (
     <div>
         <form onSubmit={handleSubmit}>
             <div className="form-group">
-                <label>Movie Title: </label>
+                <label>Event Name: </label>
                 <input type="text" 
                 className="form-control" 
-                value={title} 
-                onChange={(e) => setTitle(e.target.value)} />
+                value={name} 
+                onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="form-group">
-                <label>Release Year: </label>
+                <label>Event Date: </label>
                 <input type="text" 
                 className="form-control" 
-                value={year} 
-                onChange={(e) => setYear(e.target.value)} />
+                value={date} 
+                onChange={(e) => setDate(e.target.value)} />
             </div>
             <div className="form-group">
-                <label>Poster URL: </label>
+                <label>Location URL: </label>
                 <input type="text" 
                 className="form-control" 
-                value={poster} 
-                onChange={(e) => setPoster(e.target.value)} />
+                value={location} 
+                onChange={(e) => setLocation(e.target.value)} />
             </div>
             <div className="form-group">
-                <input type="submit" value="Edit Movie" className="btn btn-primary" />
+                <input type="submit" value="Edit Event" className="btn btn-primary" />
             </div>
         </form>
     </div>

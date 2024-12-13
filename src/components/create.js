@@ -1,67 +1,65 @@
-// create.js
-
 import { useState } from "react";
 import axios from "axios"; // Import axios for making HTTP requests
 
 function Create() {
-  // State to store the movie title, year, and poster URL inputs
-  const [title, setTitle] = useState('');
-  const [year, setYear] = useState(''); // State for movie year
-  const [posterUrl, setPosterUrl] = useState(''); // State for poster URL
+  // State to store the event name, date, and location inputs
+  const [name, setName] = useState('');
+  const [date, setDate] = useState(''); // State for event date
+  const [locationUrl, setLocationUrl] = useState(''); // State for location URL
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form action
     
-    console.log(`Title: ${title}, Year: ${year}, Poster: ${posterUrl}`); // Log the entered title, year, and poster URL
+    console.log(`Name: ${name}, Date: ${date}, Location: ${locationUrl}`); // Log the entered name, date, and location URL
     
-    const movie = {
-      title: title,
-      year: year,
-      poster: posterUrl
+    const event = {
+      name: name,
+      date: date,
+      location: locationUrl
     };
     
-    // Send a POST request to add the movie
-    axios.post('http://localhost:4000/api/movies', movie)
+    // Send a POST request to add the event
+    axios.post('http://localhost:4000/api/events', event)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err.response.data));
   };
 
   return (
     <div>
-      <h2>This is my Create Component.</h2>
-      {/* Form for adding movie details */}
+      <h2>Add Your Event Here</h2>
+      {/* Form for adding event details */}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Add Movie Title: </label>
+          <label>Add Event Name: </label>
           <input type="text"
             className="form-control"
-            value={title} // Bind the input to title state
-            onChange={(e) => setTitle(e.target.value)} // Update title state when typing
+            value={name} // Bind the input to name state
+            onChange={(e) => setName(e.target.value)} // Update name state when typing
           />
         </div>
 
-        {/* Input field for the movie year */}
+        {/* Input field for the event date */}
         <div className="form-group">
-          <label>Add Movie Year: </label>
+          <label>Add Event Date: </label>
           <input type="text"
             className="form-control"
-            value={year} // Bind the input to year state
-            onChange={(e) => setYear(e.target.value)} // Update year state when typing
+            value={date} // Bind the input to date state
+            onChange={(e) => setDate(e.target.value)} // Update date state when typing
           />
         </div>
 
-        {/* Input field for the movie poster URL */}
+        {/* Input field for the event location URL */}
         <div className="form-group">
-          <label>Add Poster URL: </label>
+          <label>Add A Location Picture: </label>
           <input type="text"
             className="form-control"
-            value={posterUrl} // Bind the input to posterUrl state
-            onChange={(e) => setPosterUrl(e.target.value)} // Update posterUrl state when typing
+            value={locationUrl} // Bind the input to locationUrl state
+            onChange={(e) => setLocationUrl(e.target.value)} // Update locationUrl state when typing
           />
         </div>
 
-        <input type="submit" value="Add Movie" /> {/* Submit button */}
+        <input type="submit" value="Add Event" /> {/* Submit button */}
       </form>
     </div>
   );

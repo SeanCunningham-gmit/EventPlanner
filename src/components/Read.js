@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from "axios"; 
 import { useState, useEffect } from "react";
-import Movies from "./Movies"; // Import Movies component
+import Events from "./Events"; // Import Events component
 
 function Read() {
-  const [data, setData] = useState([]); // State to store the list of movies
+  const [data, setData] = useState([]); // State to store the list of events
 
-  // Function to reload movie data
+  // Function to reload event data
   const Reload = () => {
-    console.log("Reloading movie data...");
-    axios.get('http://localhost:4000/api/movies')  
+    console.log("Reloading event data...");
+    axios.get('http://localhost:4000/api/events')  
       .then((response) => {
-        // Set the movies state with the fetched data
+        // Set the events state with the fetched data
         setData(response.data);
       })
       .catch((error) => {
@@ -25,9 +25,9 @@ function Read() {
 
   return (
     <div>
-      <h2>Movie List</h2>
-      {/* Pass the movies and Reload function to the Movies component */}
-      <Movies myMovies={data} ReloadData={Reload} />
+      <h2>Event List</h2>
+      {/* Pass the events and Reload function to the Events component */}
+      <Events myEvents={data} ReloadData={Reload} />
     </div>
   );
 }
